@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VOCÊ FOI INVADIDO</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #0ff;
+      font-family: 'Courier New', Courier, monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+      animation: glitchBg 5s infinite;
+    }
+
+    h1 {
+      font-size: 3em;
+      text-align: center;
+      text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px #0ff;
+      animation: glitchText 1s infinite;
+      color: #fff;
+    }
+
+    .symbol {
+      font-size: 6em;
+      color: #fff;
+      text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px #0ff;
+      margin-bottom: 20px;
+      animation: rotateSymbol 4s linear infinite;
+    }
+
+    p {
+      font-size: 1.2em;
+      max-width: 600px;
+      text-align: center;
+      color: #ccc;
+    }
+
+    .arabic {
+      font-size: 0.9em;
+      font-style: normal;
+      margin-top: 20px;
+      color: #003333;
+      text-align: center;
+      max-width: 500px;
+      user-select: none;
+    }
+
+    .matrix {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .matrix span {
+      position: absolute;
+      color: #0ff;
+      font-size: 12px;
+      animation: drop 4s linear infinite;
+      opacity: 0.2;
+    }
+
+    @keyframes drop {
+      0% { transform: translateY(-100%); opacity: 0.1; }
+      50% { opacity: 0.4; }
+      100% { transform: translateY(100vh); opacity: 0; }
+    }
+
+    @keyframes glitchText {
+      0% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(-2px, -2px); }
+      60% { transform: translate(2px, 2px); }
+      80% { transform: translate(2px, -2px); }
+      100% { transform: translate(0); }
+    }
+
+    @keyframes glitchBg {
+      0%, 100% { background-color: #000; }
+      50% { background-color: #001f1f; }
+    }
+
+    @keyframes rotateSymbol {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <audio autoplay loop>
+    <source src="audio_zoya_site.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="matrix" id="matrix"></div>
+  <div class="symbol">&#x29D6;</div>
+  <h1>VOCÊ FOI INVADIDO</h1>
+  <p>Este sistema foi comprometido. Não por vingança, mas por justiça. Você está lendo isso porque alguém se recusou a aceitar o silêncio. Seus dados não foram deletados. Ainda. Você tem escolha. Reescreva sua história. Ou será reescrita por aqueles que você tentou apagar.</p>
+  <div class="arabic">
+    <p>4d6e20797a727820627a727c2c20796168737a642067647a622e</p>
+  </div>
+  <script>
+    const matrix = document.getElementById("matrix");
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    for (let i = 0; i < 150; i++) {
+      const span = document.createElement("span");
+      span.innerText = Math.random() > 0.5 ? "0" : "1";
+      span.style.left = Math.random() * width + "px";
+      span.style.top = Math.random() * height + "px";
+      span.style.animationDuration = 2 + Math.random() * 3 + "s";
+      matrix.appendChild(span);
+    }
+  </script>
+</body>
+</html>
