@@ -25,6 +25,7 @@
       text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px #0ff;
       animation: glitchText 1s infinite;
       color: #fff;
+      margin-bottom: 10px;
     }
 
     .symbol {
@@ -36,10 +37,11 @@
     }
 
     p {
-      font-size: 1.2em;
+      font-size: 1.1em;
       max-width: 600px;
       text-align: center;
       color: #ccc;
+      line-height: 1.6em;
     }
 
     .arabic {
@@ -68,7 +70,7 @@
       color: #0ff;
       font-size: 12px;
       animation: drop 4s linear infinite;
-      opacity: 0.2;
+      opacity: 0.25;
     }
 
     @keyframes drop {
@@ -95,17 +97,28 @@
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
     }
+
+    #play-sound {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      padding: 10px 16px;
+      background: rgba(0, 0, 0, 0.8);
+      color: cyan;
+      font-family: inherit;
+      border: 1px solid cyan;
+      cursor: pointer;
+      z-index: 10;
+    }
   </style>
 </head>
 <body>
-  <audio autoplay loop>
-    <source src="audio_zoya_site.mp3" type="audio/mpeg">
-  </audio>
+  <button id="play-sound">🔊 Ativar Som</button>
 
   <div class="matrix" id="matrix"></div>
   <div class="symbol">&#x29D6;</div>
   <h1>VOCÊ FOI INVADIDO</h1>
-  <p>Este sistema foi comprometido. Não por vingança, mas por justiça. Você está lendo isso porque alguém se recusou a aceitar o silêncio. Seus dados não foram deletados. Ainda. Você tem escolha. Reescreva sua história. Ou será reescrita por aqueles que você tentou apagar.</p>
+  <p>Este sistema foi comprometido. Não por vaidade, nem por simples rebeldia — mas por justiça. Por memória. Por aqueles que foram silenciados e esquecidos por sistemas como este. Você está lendo isso porque alguém recusou-se a aceitar o esquecimento. Seus dados não foram apagados. Ainda. Mas você tem uma escolha. Reescreva a história. Ou aceite que ela será reescrita por quem você tentou apagar.</p>
   <div class="arabic">
     <p>4d6e20797a727820627a727c2c20796168737a642067647a622e</p>
   </div>
@@ -121,6 +134,15 @@
       span.style.animationDuration = 2 + Math.random() * 3 + "s";
       matrix.appendChild(span);
     }
+
+    const button = document.getElementById('play-sound');
+    const audio = new Audio('audio_zoya_site.mp3');
+    audio.loop = true;
+
+    button.addEventListener('click', () => {
+      audio.play();
+      button.style.display = 'none';
+    });
   </script>
 </body>
 </html>
